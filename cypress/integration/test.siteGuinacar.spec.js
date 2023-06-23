@@ -10,13 +10,14 @@
 
 /// <reference types="Cypress" />
 
+// NESTES TESTES SÃO UTILIZADOS TDD (TEST-DRIVEN-DEVELOPMENT)
 
 
-describe('Central de Atendimento ao Cliente TAT' , function() {
-    //const THREE_SECONDS_IN_MS = 3000
+describe('Testes de Interface Gráfica Site Guinacar Automotive' , function() {
+    const SEVEN_SECONDS_IN_MS = 7000
     
     beforeEach(function(){
-        cy.visit('www.guinacarautomotive.com.br')
+        cy.visit('https://www.guinacarautomotive.com.br')
     })
 
     //DEVE DAR CERTO
@@ -29,5 +30,25 @@ describe('Central de Atendimento ao Cliente TAT' , function() {
         cy.title().should('not.be.equal' , 'Guinacar Automotive | Loja Online')
     })
 
+    //ADICIONAR PRODUTO AO CARRINHO
+    it.only('adiciona produto ao carrinho, e valida se foi adicionado, e logo após o exclui' , function(){
+
+
+        cy.clock()
+        cy.tick(SEVEN_SECONDS_IN_MS)
+        cy.get('.ui-ms-newsletter-modal__content-close > svg').click()
+        
+        cy.contains('Óleo De Câmbio Manual Petronas Zc 75w-80 Tutela 1 L').click({force : true})
+        cy.clock()
+
+        cy.contains('Adicionar ao carrinho').click()
+        cy.clock()
+        cy.should('be.visible' , '#item-row')
+
+        cy.contains('Excluir').click()
+        cy.clock()
+        cy.should('be.visible' , 'Ir de compras')
+
+})
 
 })
