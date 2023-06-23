@@ -1,6 +1,5 @@
 
 
-
 // CAC.CAT.spec.js created with Cypress
 //
 // Start writing your Cypress tests below!
@@ -15,6 +14,7 @@
 
 describe('Testes de Interface Gráfica Site Guinacar Automotive' , function() {
     const SEVEN_SECONDS_IN_MS = 7000
+
     
     beforeEach(function(){
         cy.visit('https://www.guinacarautomotive.com.br')
